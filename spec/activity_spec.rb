@@ -53,7 +53,7 @@ RSpec.describe Activity do
 
       activity.add_participant("Maria", 20)
       activity.add_participant("Luther", 40)
-      
+
       expect(activity.owed).to eq({"Maria" => 10, "Luther" => -10})
     end
   end
