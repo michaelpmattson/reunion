@@ -34,4 +34,19 @@ class Reunion
     end
     summary.chomp
   end
+
+  def detailed_breakout
+    detailed_breakout = Hash.new { |hash, key| hash[key] = [] }
+    @activities.each do |activity|
+      activity.participants.each do |participant, owed|
+        detailed_breakout[participant] << {
+            activity: activity.name,
+            payees:   activity.payees(participant),
+            amount:   activity.owed_per_payee(participant)
+          }
+          # require "pry"; binding.pry
+      end
+    end
+    detailed_breakout
+  end
 end

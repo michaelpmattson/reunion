@@ -28,4 +28,18 @@ class Activity
     end
     owed
   end
+
+  def owed_per_payee(name)
+    owed[name] / payees(name).count
+  end
+
+  def payees(name)
+    payees = []
+      @participants.each do |participant, amount_paid|
+        if participant != name && owed[participant] != owed[name]
+          payees << participant
+        end
+      end
+    payees
+  end
 end
